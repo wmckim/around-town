@@ -4,6 +4,7 @@ import { ObjectId } from "mongodb";
 import { postData } from "./index.js";
 import * as EmailValidator from "email-validator";
 import * as DateValidator from "validate-date";
+import * as AddressValidator from "address-validator";
 import bcrypt from "bcrypt";
 
 export const create = async (
@@ -204,22 +205,24 @@ export const create = async (
   }
   export const post = async (
     myId,
-    timestamp,
-    latitude,
-    longitude,
+    date,
+    location,
     image,
-    caption
+    caption // Description
  )=>{
     let id = idChecker(myId);
 
-    if(!timestamp) throw "please supply timestampU";
-    if(!latitude) throw "please supply latitudeU";
-    if(!longitude) throw "please supply longitudeU";
+    if(!date) throw "please supply date";
+    if(!location) throw "please supply location";
     if(!caption) throw "Please supply caption"
     if(!image) throw "Please suply image"
     
     //console.log(typeof timestamp);
-    if(typeof latitude != 'number') throw "Latitude must be float"
+    // TODO: Fix. Apparently this wasn't working in the 546 code so I'm not going to try it for now
+    // if(!(DateValidator.validateDate(birthday, "boolean"))) throw "supply valid date"
+
+    // TODO: Location validation. See address-validator npm page for example
+
     if( typeof image !='string') throw "image must be a string"
     if(typeof caption != 'string') throw "Caption must be a string"
     if( typeof longitude != 'number') throw" (longitude must be an int)"
@@ -227,8 +230,7 @@ export const create = async (
     caption = caption.trim();
     if( typeof longitude != 'number') throw"longitude must be an float"
     
-    if(typeof timestamp != 'object' ) throw "timestamp must be an object"
-    let newPost = await postData.create(timestamp, latitude, longitude, image, caption);
+    let newPost = await postData.create(date, location, image, caption);
     let userPosts = await getUserById(id);
     userPosts = userPosts.posts
     //console.log(userPosts);
