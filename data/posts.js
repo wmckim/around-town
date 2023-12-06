@@ -165,4 +165,4 @@ export const create = async (
   }
 
   export default {create, getAll,getPostsByDate, getPostById,removePost,
-  addComment, addReaction, addMedia};
+   addMedia};

@@ -276,7 +276,7 @@ export const create = async (
       return existingUser;
     } else {
       console.log("Password does not match");
-      throw "Either the email address or password is invalid";
+      throw "Either the username or password is invalid";
     }
 
   }
@@ -285,5 +285,5 @@ export const create = async (
   export const updateProfile = async(newEmail, newGender, newCity, newState, newBd) =>{
 
       }
-  export default {create, getAll, getUserById,removeUser,blockUser, unblockUser
-      , addFriend, removeFriend, changeUsername, changePassword, post,  updateProfile, login};
+  export default {create, getAll, getUserById,removeUser,
+         changeUsername, changePassword, post,  updateProfile, login};
