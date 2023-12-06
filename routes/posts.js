@@ -21,7 +21,6 @@ router.route('/makepost').get(async (req, res) => {
     res.render('makepost', {isLoggedIn: true});
 });
 
-/* TODO: POST ROUTE */
 router.route('/makepost').post(async (req, res) => {
 	// Do a database query?
 	try{
@@ -67,6 +66,9 @@ router.route('/makepost').post(async (req, res) => {
 	}
 
 });
+
+// TODO: Register for event route?
+
 router.get('/:id', async (req, res) => {
 	// Query the database for the id passed. return 404 if not found.
 	// If post id is found, grab the rest of the post data, and pass it into a
